@@ -3,9 +3,9 @@
 ## Rodando o servidor
 ### Critérios
 Para rodar o servidor é necessário:
-    -ter instalado o mysql server
-    -criar um db ou adicionar um existente nas configurações de conexão com o db em vitto_cash_machine/server/models/models.js
-    -instalar dependências com npm install
+    1. ter instalado o mysql server
+    2. criar um db ou adicionar um existente nas configurações de conexão com o db em vitto_cash_machine/server/models/models.js
+    3. instalar dependências com npm install
 
 Com os critérios acima atendidos:
 ```shell
