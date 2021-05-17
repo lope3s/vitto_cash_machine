@@ -3,18 +3,18 @@
 ## Rodando o servidor
 ### Critérios
 Para rodar o servidor é necessário:
-    1ª ter instalado o mysql server
-    2ª criar um db ou adicionar um existente nas configurações de conexão com o db em vitto_cash_machine/server/models/models.js
-    3ª instalar dependências com npm install
+    -ter instalado o mysql server
+    -criar um db ou adicionar um existente nas configurações de conexão com o db em vitto_cash_machine/server/models/models.js
+    -instalar dependências com npm install
 
 Com os critérios acima atendidos:
 ```shell
-//vitto_cash_machine/server
+#vitto_cash_machine/server
 npm app_server.js
 ```
 
 ## Sobre
-    A API foi desenvolvida utilizando NodeJs com o framework Express e foi utilizado a lib do Passport para autenticação das rotas, a conexão com o database foi feita através do Sequelize com o mysql
+A API foi desenvolvida utilizando NodeJs com o framework Express e foi utilizado a lib do Passport para autenticação das rotas, a conexão com o database foi feita através do Sequelize com o mysql
 
 ## Utilização
 ### Rotas
@@ -148,6 +148,6 @@ Tentar acessar sem estar logado vai gerar uma resposta de 401 Unauthorized
 ```
 
 ## Sobre
-    O Front-end dessa aplicação foi desenvolvido utilizando o ReactJS foi utilizado também, contextApi para gerenciamento e compartilhamento de estados, metodologia AtomicDesign para gerenciamento de componentes e a biblioteca axios para conexão com o Back-end
+O Front-end dessa aplicação foi desenvolvido utilizando o ReactJS foi utilizado também, contextApi para gerenciamento e compartilhamento de estados, metodologia AtomicDesign para gerenciamento de componentes e a biblioteca axios para conexão com o Back-end
 
-    base do design do projeto: https://www.figma.com/file/dMMvS5aXaHtiGlQhd6XqqH/Vitto-Cash-Machine?node-id=2%3A2
+base do design do projeto: (https://www.figma.com/file/dMMvS5aXaHtiGlQhd6XqqH/Vitto-Cash-Machine?node-id=2%3A2)
