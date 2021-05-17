@@ -1,70 +1,153 @@
-# Getting Started with Create React App
+# Back-end
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Rodando o servidor
+### Critérios
+Para rodar o servidor é necessário:
+    1ª ter instalado o mysql server
+    2ª criar um db ou adicionar um existente nas configurações de conexão com o db em vitto_cash_machine/server/models/models.js
+    3ª instalar dependências com npm install
 
-## Available Scripts
+Com os critérios acima atendidos:
+```shell
+//vitto_cash_machine/server
+npm app_server.js
+```
 
-In the project directory, you can run:
+## Sobre
+    A API foi desenvolvida utilizando NodeJs com o framework Express e foi utilizado a lib do Passport para autenticação das rotas, a conexão com o database foi feita através do Sequelize com o mysql
 
-### `yarn start`
+## Utilização
+### Rotas
+    baseUrl: http://localHost:3001/api
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### POST - /signup 
+```JSON
+//Request body
+{
+    "email": "user@mail.com",
+    "password": "123456",
+    "cpf": "12345678910"
+}
+```
+```JSON
+//Response
+{
+"user": {
+    "id": 1,
+    "email": "user@mail.com",
+    "cpf": "12345678910",
+    "balance": 0
+}
+}
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### POST - /login
+```JSON
+//Request body 
+{
+    "email": "user@mail.com",
+    "password": "123456"
+}
+```
+```JSON
+//Response
+{
+    "user": {
+        "id": 2,
+        "cpf": "12345678989"
+    }
+}
+```
 
-### `yarn test`
+### GET - /user (Protegida)
+```JSON
+//Response
+{
+    "id": 1,
+    "balance": 0,
+    "cpf": "12345678910"
+}
+```
+Tentar acessar sem estar logado vai gerar uma resposta de 401 Unauthorized
+```JSON
+//Response 401 Unauthorized
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### PUT - /operations (Protegida)
+```JSON
+//Request body
+{
+    "cpf": "12345678989",
+    "type": "depósito",
+    "amount": 500
+}
+```
+```JSON
+//Response
+{
+    "operation": {
+        "id": 1,
+        "type": "depósito",
+        "date": "2021-05-17T19:20:13.944Z",
+        "amount": 500,
+        "userId": 1
+    }
+}
+```
+Tentar acessar sem estar logado vai gerar uma resposta de 401 Unauthorized
+```JSON
+//Response 401 Unauthorized
+```
 
-### `yarn build`
+### POST - /extract (Protegida)
+```JSON
+//Request body
+{
+    "cpf": "12345678910"
+}
+```
+```JSON
+//Response
+{
+    "balance": 500,
+    "operations": [
+        {
+        "id": 1,
+        "type": "depósito",
+        "date": "2021-05-17T19:20:13.000Z",
+        "amount": 500,
+        "userId": 1
+        }
+    ]
+}
+```
+Tentar acessar sem estar logado vai gerar uma resposta de 401 Unauthorized
+```JSON
+//Response 401 Unauthorized
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### GET - /logout (Protegida)
+```JSON
+// Response 204 NO CONTENT
+```
+Tentar acessar sem estar logado vai gerar uma resposta de 401 Unauthorized
+```JSON
+//Response 401 Unauthorized
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# Front-end
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## instalando dependências do projeto
+```shell
+    npm install
+```
 
-### `yarn eject`
+## Rodando o cliente
+``` shell
+    npm start
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Sobre
+    O Front-end dessa aplicação foi desenvolvido utilizando o ReactJS foi utilizado também, contextApi para gerenciamento e compartilhamento de estados, metodologia AtomicDesign para gerenciamento de componentes e a biblioteca axios para conexão com o Back-end
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+    base do design do projeto: https://www.figma.com/file/dMMvS5aXaHtiGlQhd6XqqH/Vitto-Cash-Machine?node-id=2%3A2
