@@ -13,10 +13,11 @@ const CheckCpf = () =>{
 
 
     const handleCpf = (data) => {
+        console.log('fui ativado')
         if(userInformation.cpf !== data.cpf){
-            return setError('invalidData', {message: "CPF inválido, tente novamente"})
+            setError('invalidData', {type: 'manual', message: "CPF inválido, tente novamente"})
+            return
         }
-        clearErrors('invalidData')
         history.push('/extrato')
     }
 
@@ -43,6 +44,7 @@ const CheckCpf = () =>{
             formCallback = {handleSubmit(handleCpf)} 
             inputs = {[{pholder: "Digite seu CPF", inputCallback: (e) => setValue('cpf', e.target.value), type: undefined}]}
             error = {errors}
+            buttonCallback = {() => clearErrors('invalidData')}
             />
         </Container>
     )

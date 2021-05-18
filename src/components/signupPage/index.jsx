@@ -10,10 +10,12 @@ import { useHistory } from 'react-router-dom'
 const SignUpPage = () => {
     const history = useHistory()
 
-    const { register, unregister, handleSubmit, setValue, setError, formState: {errors} } = useForm()
+    const { register, unregister, handleSubmit, setValue, setError, clearErrors, formState: {errors} } = useForm()
 
     const login = (data) => {
-        axios.post('http://localhost:3001/api/signup', data).then(res => history.push('/')).catch(err => setError("invalidData", {message: "Algo inesperado aconteceu, tente novamente mais tarde"}))
+        axios.post('http://localhost:3001/api/signup', data)
+        .then(res => history.push('/'))
+        .catch(err => setError("invalidData", {message: "Algo inesperado aconteceu, tente novamente mais tarde"}))
     } 
 
     useEffect(() => {
@@ -54,6 +56,7 @@ const SignUpPage = () => {
                 {pholder: "Senha", inputCallback: (e) => setValue("password", e.target.value), type: "password"},
                 {pholder: "CPF", inputCallback: (e) => setValue("cpf", e.target.value), type: undefined}
             ]}
+            buttonCallback = {() => clearErrors('invalidData')}
             error = {errors}
             />
             <Publicity img = {image} textContent = {["Não tem uma conta vitto?!", "Cadastre-se agora, é rápido e não tem chá de cadeira!"]}/>

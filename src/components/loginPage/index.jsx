@@ -59,6 +59,7 @@ const LoginPage = () => {
                 {pholder: "Email", inputCallback: (e) => setValue("email", e.target.value), type: undefined}, 
                 {pholder: "Senha", inputCallback: (e) => setValue("password", e.target.value), type: "password"}
             ]}
+            buttonCallback = {() => clearErrors('invalidData')}
             error = {errors}
             />
             <Publicity img = {image} textContent = {["Vitto cash machine", "O seu dinheiro mais seguro"]}/>

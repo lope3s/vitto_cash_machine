@@ -104,6 +104,7 @@ const OperationPage = () => {
                 type: undefined, 
                 value: !amount ? '' : undefined}
             ]}
+            buttonCallback = {() => clearErrors('invalidData')}
             error = {errors}
             />
             <Publicity img = {image} width = "750px" height = "411px"/>

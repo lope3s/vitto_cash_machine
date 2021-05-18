@@ -33,7 +33,8 @@ const Form = (props) =>{
                     'Login': history.location.pathname === '/cadastro' ? 
                     "Cadastrar" : history.location.pathname === '/operacoes' ? 
                     "Executar" : 'Continuar'} 
-                    type = 'submit'/>
+                    type = 'submit'
+                    callback = {props.buttonCallback}/>
                 {
                     props.error.email &&
                     <Text content = {props.error.email.message} color = '#C30202' margin = "5px" />
