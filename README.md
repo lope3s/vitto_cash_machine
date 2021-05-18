@@ -10,7 +10,7 @@ Para rodar o servidor é necessário:
 Com os critérios acima atendidos:
 ```shell
 #vitto_cash_machine/server
-npm app_server.js
+node app_server.js
 ```
 
 ## Sobre
